@@ -1,0 +1,50 @@
+/* src/pages/AchievementDetail.css */
+.achievement-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 200px); /* Adjust based on your navbar height */
+}
+
+.achievement-detail-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.achievement-detail-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.achievement-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.achievement-detail-info {
+  padding: 2rem;
+}
+
+.achievement-detail-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.achievement-detail-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #34495e;
+}
+
+.achievement-detail-loading,
+.achievement-detail-not-found {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #666;
+}

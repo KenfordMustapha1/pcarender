@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.contact-us {
+  padding: 60px 20px;
+  background-color: #018844;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.contact-info h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.contact-info p {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  /* Optional: add some padding to avoid sticking to edges */
+  padding: 0 10px;
+}
+
+.contact-column {
+  /* Remove all background, padding, border-radius, hover */
+  /* Just make it a simple text container */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+.contact-column h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.contact-column p {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  opacity: 0.95;
+}

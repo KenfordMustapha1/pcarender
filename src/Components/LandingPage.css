@@ -1,0 +1,13 @@
+.footer {
+  text-align: center; /* Center text horizontally */
+  padding: 20px; /* Add some padding */
+  background-color: #f8f9fa; /* Optional: Choose a background color */
+  position: relative;
+  width: 100%; /* Ensure it takes full width */
+  bottom: 0; /* Ensure it's at the bottom if the content is short */
+}
+
+* {
+  user-select: none;
+  outline: none;
+}

@@ -1,0 +1,191 @@
+/* RegistrationPage.css - Updated for location fields and map visualization */
+
+.registration-container {
+  max-width: 1000px; /* Changed from 800px to 1000px */
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.registration-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Top Tabs */
+.step-tabs {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  flex: 1;
+  min-width: 140px; /* Slightly increased for more breathing room */
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+  background-color: #dbeafe;
+}
+
+.tab.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.single-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.single-row label {
+  flex: 1;
+  min-width: 200px; /* Increased to match wider container */
+  font-weight: 600;
+  color: #333;
+}
+
+.single-row input,
+.single-row select {
+  flex: 2;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+/* Specific styling for location fields to ensure consistent layout */
+.single-row select[name="province"],
+.single-row select[name="municipality"],
+.single-row select[name="barangay"] {
+  min-width: 0; /* Override min-width for these specific selects */
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-back,
+.btn-next,
+.btn-submit {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-next,
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-back:hover {
+  background-color: #5a6268;
+}
+
+.btn-next:hover,
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Success popup */
+.success-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+}
+
+.success-icon span {
+  font-size: 48px;
+  color: green;
+}
+
+/* Additional styles for specific location field layout */
+/* This ensures the location fields stack nicely if needed on smaller screens */
+@media (max-width: 768px) {
+  .single-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .single-row label {
+    min-width: auto;
+    margin-bottom: 5px;
+  }
+
+  .single-row input,
+  .single-row select {
+    flex: none;
+  }
+}

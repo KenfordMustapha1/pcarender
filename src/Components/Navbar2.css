@@ -1,0 +1,573 @@
+/* src/Components/Navbar2.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  margin-left: 60px;
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-logo .dot {
+  color: #018844;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #018844;
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-icon,
+.navbar-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #444;
+  transition: color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.navbar-icon:hover,
+.navbar-profile-icon:hover {
+  color: #018844;
+  background-color: rgba(1, 136, 68, 0.1);
+  transform: scale(1.05);
+}
+
+.dropdown-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: -175px;
+  transform: translateX(-10px);
+  
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  min-width: 260px;
+  padding: 0;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: linear-gradient(135deg, #018844 0%, #02a855 100%);
+  color: white;
+  gap: 12px;
+}
+
+.dropdown-user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.dropdown-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.dropdown-username {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-user-email {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e8e8e8;
+  margin: 8px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(90deg, #f0f8f3 0%, #e8f5ed 100%);
+  color: #018844;
+  padding-left: 24px;
+}
+
+.logout-button {
+  color: #dc3545;
+}
+
+.logout-button:hover {
+  background: linear-gradient(90deg, #fff0f0 0%, #ffe8e8 100%);
+  color: #c82333;
+}
+
+.logout-button .dropdown-icon {
+  color: #dc3545;
+}
+
+.dropdown-icon {
+  font-size: 16px;
+  color: #018844;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-item:hover .dropdown-icon {
+  transform: scale(1.1);
+}
+
+.logout-button:hover .dropdown-icon {
+  color: #c82333;
+}
+
+.cart-icon-with-count {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 50%;
+  padding: 3px 7px;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+    font-size: 14px;
+  }
+
+  .navbar-auth {
+    gap: 1rem;
+  }
+
+  .navbar-icon,
+  .navbar-profile-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .dropdown-menu {
+    min-width: 240px;
+  }
+
+  .dropdown-header {
+    padding: 14px;
+  }
+
+  .dropdown-user-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .dropdown-username {
+    font-size: 15px;
+  }
+}
+
+.navbar-profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-profile-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px #018844;
+}
+
+.navbar-profile-initial {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar-profile-initial:hover {
+  background-color: #d0d0d0;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   CHAT DROPDOWN - GREEN THEME
+   ============================================ */
+
+.chat-dropdown-wrapper {
+  position: relative;
+}
+
+.chat-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.chat-icon-btn:hover {
+  background: rgba(1, 136, 68, 0.1);
+  color: #018844;
+  transform: scale(1.1);
+}
+
+/* ✅ GREEN CHAT COUNT BADGE */
+.chat-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #018844 0%, #02a855 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(1, 136, 68, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Chat Dropdown Menu */
+.chat-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 360px;
+  max-height: 500px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ GREEN GRADIENT HEADER */
+.chat-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(135deg, #018844 0%, #02a855 100%);
+  color: white;
+}
+
+.chat-dropdown-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.chat-dropdown-header .unread-badge {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Chat Conversations List */
+.chat-conversations-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.chat-conversations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-conversations-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chat-conversations-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.chat-conversations-list::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* No Conversations State */
+.no-conversations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.no-conversations p {
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+
+/* Conversation Item */
+.chat-conversation-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.chat-conversation-item:hover {
+  background: linear-gradient(135deg, rgba(1, 136, 68, 0.08) 0%, rgba(2, 168, 85, 0.08) 100%);
+  transform: translateX(2px);
+}
+
+.chat-conversation-item:last-child {
+  border-bottom: none;
+}
+
+/* ✅ GREEN GRADIENT AVATAR */
+.chat-conv-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #018844 0%, #02a855 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-right: 12px;
+  box-shadow: 0 2px 8px rgba(1, 136, 68, 0.3);
+}
+
+.chat-conv-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-conv-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ MESSAGE PREFIX STYLING (YOU:) */
+.chat-conv-last-message {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.chat-conv-last-message .message-prefix {
+  font-weight: 600;
+  color: #018844;
+}
+
+.chat-conv-time {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* ✅ GREEN UNREAD BADGE */
+.chat-conv-unread {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #018844 0%, #02a855 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 12px;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(1, 136, 68, 0.4);
+}
+
+/* Chat Dropdown Footer */
+.chat-dropdown-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #f0f0f0;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.chat-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .chat-dropdown-menu {
+    width: 320px;
+    right: -20px;
+  }
+
+  .chat-conversation-item {
+    padding: 10px 15px;
+  }
+
+  .chat-conv-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}

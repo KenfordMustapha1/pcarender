@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 240px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Navigation Styles */
+.nav-list {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+}
+
+.nav-list li {
+  width: 100%;
+}
+
+.nav-list li span {
+  display: block;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.nav-list li span:focus {
+  outline: none;
+}
+
+.nav-list li span:hover {
+  background-color: #f1f5f9;
+  color: #0b8c4c;
+}
+
+.nav-list li .active {
+  background-color: #e6fff0;
+  color: #018844;
+  font-weight: 600;
+  border-left: 4px solid #018844;
+  padding-left: 12px;
+}
+
+.danger-item {
+  color: #d9534f;
+}
+
+.danger-item:hover {
+  background-color: #ffe6e6;
+}
+
+/* Main Content Area */
+.dashboard-main {
+  flex-grow: 1;
+  padding: 32px;
+  background-color: #f9fafb;
+}
+
+
+/* Profile Icon at Top of Sidebar */
+.profile-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #018844;
+}

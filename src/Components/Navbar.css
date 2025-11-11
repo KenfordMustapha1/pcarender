@@ -1,0 +1,90 @@
+.navbar {
+  position: sticky; /* Make the navbar sticky */
+  top: 0; /* Stick the navbar to the top of the viewport */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 60px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+
+.logo-image {
+  height: 40px; /* Set logo height */
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 40px; /* more spacing between links */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  font-size: 18px; /* bigger text */
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #028543;
+}
+
+.navbar-auth {
+  display: flex;
+  gap: 20px;
+}
+
+.signin-btn,
+.signup-btn {
+  padding: 12px 30px; /* bigger buttons */
+  border-radius: 40px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+
+.signin-btn {
+  background-color: #028543;
+  color: white;
+}
+
+.signup-btn {
+  background-color: #e4ffe4;
+  color: #028543;
+}
+
+.signin-btn:hover {
+  background-color: #026f3a; /* Darker shade of green for hover */
+  color: #ffffff; /* Keep text color white */
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.signup-btn:hover {
+  background-color: #c8f7c8; /* Lighter shade of green for hover */
+  color: #026f3a; /* Darker green for text color */
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+.navbar-logo {
+  margin-left: 60px; /* Adjust this value as needed */
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}

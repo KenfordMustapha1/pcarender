@@ -1,0 +1,55 @@
+.client-logos {
+  background-color: #018844;
+  padding: 60px 0; /* Increased vertical space */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* Adds gap between top and bottom rows */
+}
+
+.logos-slider {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos-track {
+  display: flex;
+  gap: 100px;
+  animation: scroll-left 30s linear infinite;
+  width: fit-content;
+}
+
+.logos-slider.right .logos-track {
+  animation: scroll-right 30s linear infinite;
+}
+
+.logos-slider.left .logos-track {
+  animation: scroll-left 30s linear infinite;
+}
+
+.logos-track img {
+  max-width: 140px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Continuous scroll keyframes */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+    

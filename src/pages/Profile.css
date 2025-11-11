@@ -1,0 +1,312 @@
+/* Profile.css */
+.profile-container {
+  padding: 30px 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+.profile-container h2 {
+  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.profile-subtext {
+  margin-bottom: 30px;
+  color: #6c757d;
+  font-size: 15px;
+}
+
+.profile-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-top: 1px solid #dee2e6;
+  padding-top: 25px;
+}
+
+.left-section {
+  flex: 1 1 60%;
+  min-width: 300px;
+}
+
+.right-section {
+  flex: 1 1 35%;
+  text-align: center;
+  min-width: 280px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.text-readonly {
+  font-size: 15px;
+  color: #495057;
+}
+
+.inline-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: green;
+}
+
+.gender-options {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.gender-options label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #495057;
+}
+
+.gender-options input[type="radio"] {
+  display: none;
+}
+
+.radio-circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4a4a4a;
+  border-radius: 50%;
+  position: relative;
+}
+
+.gender-options input[type="radio"]:checked + .radio-circle::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #28a745;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+.dob-select {
+  display: flex;
+  gap: 10px;
+}
+
+.dob-select select {
+  flex: 1;
+}
+
+.save-btn {
+  background-color: #28a745;;
+  color: white;
+  padding: 12px 88px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+  margin-left: 250px;
+}
+
+.save-btn:hover {
+  background-color: #357ab8;
+}
+
+.image-box {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.placeholder {
+  width: 90px;
+  height: 90px;
+  background-image: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.upload-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #343a40;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #212529;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+
+.link-button:hover {
+  color: green;
+}
+
+.info-text {
+  font-size: 13px;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.saved-name {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 17px;
+  color: #212529;
+}
+
+.save-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+  font-weight: bold;
+}
+
+/* Address Modal Styles */
+.address-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.address-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.address-modal h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-form-group {
+  margin-bottom: 20px;
+}
+
+.modal-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.modal-form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.modal-form-group select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-cancel-btn,
+.modal-confirm-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-cancel-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.modal-cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-confirm-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-confirm-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

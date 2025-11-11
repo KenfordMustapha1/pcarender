@@ -1,0 +1,93 @@
+/* Certi.css */
+.certi-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+  background: #fff;
+}
+
+.certi-card:hover {
+  transform: translateY(-5px);
+}
+
+.certi-header {
+  background-color: #d7f0c2;
+  color: #1d6b0f;
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.certi-icon {
+  width: 60px;
+  margin: 15px 0;
+}
+
+.course-label {
+  color: gray;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.course-title {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.issued-date {
+  background: #f0f2f5;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  font-size: 14px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 500px;
+  text-align: center;
+}
+
+.certificate-preview {
+  padding: 20px;
+  margin: 20px 0;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #1d6b0f;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background: #777;
+}

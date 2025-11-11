@@ -1,0 +1,447 @@
+/* Activities.css - Modern Professional Styling */
+
+.activities-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.page-subtitle {
+  font-size: 1.125rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Post Form Section */
+.post-form-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.post-form-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1a1a1a;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Image Upload */
+.image-upload-container {
+  margin-top: 0.5rem;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-placeholder:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.upload-placeholder svg {
+  color: #9ca3af;
+}
+
+.upload-placeholder span {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.image-preview-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-image {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.change-image-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.change-image-btn:hover {
+  background: #e5e7eb;
+}
+
+/* Submit Button - More specific to override dashboard styles */
+.activities-wrapper .submit-btn {
+  padding: 0.875rem 2rem;
+  background: #3b82f6 !important;  /* Blue background */
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  margin-top: 0.5rem !important;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3) !important;
+}
+
+.activities-wrapper .submit-btn:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+.activities-wrapper .submit-btn:active {
+  transform: translateY(0) !important;
+}
+
+.activities-wrapper .submit-btn:disabled {
+  background: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-bottom: 3rem;
+}
+
+.achievements-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.achievement-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.achievement-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.achievement-content {
+  padding: 1.5rem;
+}
+
+.achievement-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem 0;
+}
+
+.achievement-description {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Delete Button - More specific to override dashboard styles */
+.activities-wrapper .delete-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem !important;
+  background: #fee !important;
+  color: #dc2626 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.activities-wrapper .delete-button:hover {
+  background: #fecaca !important;
+  border-color: #dc2626 !important;
+}
+
+.activities-wrapper .delete-button svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.empty-state svg {
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .activities-wrapper {
+    padding: 1.5rem;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .activities-wrapper {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .post-form-section,
+  .achievements-section {
+    padding: 1.5rem;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-image {
+    max-width: 100%;
+    max-height: 200px;
+  }
+  
+  .achievement-content {
+    padding: 1rem;
+  }
+  
+  .achievement-title {
+    font-size: 1.1rem;
+  }
+  
+  .achievement-description {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+  }
+  
+  .post-form-section,
+  .achievements-section {
+    padding: 1rem;
+  }
+  
+  .post-form-section h2 {
+    font-size: 1.25rem;
+  }
+  
+  .form-group label {
+    font-size: 0.75rem;
+  }
+  
+  .form-group input[type="text"],
+  .form-group textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .upload-placeholder {
+    padding: 2rem 1rem;
+  }
+  
+  .upload-placeholder span {
+    font-size: 0.75rem;
+  }
+  
+  .activities-wrapper .submit-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.1rem;
+  }
+  
+  .empty-state p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .activities-wrapper {
+    padding: 0.75rem;
+  }
+  
+  .page-title {
+    font-size: 1.6rem;
+  }
+  
+  .post-form-section,
+  .achievements-section {
+    padding: 0.75rem;
+  }
+  
+  .achievement-image-container {
+    height: 150px;
+  }
+  
+  .achievement-content {
+    padding: 0.75rem;
+  }
+  
+  .achievement-title {
+    font-size: 1rem;
+  }
+  
+  .achievement-description {
+    font-size: 0.8rem;
+  }
+  
+  .activities-wrapper .delete-button {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.75rem !important;
+  }
+}

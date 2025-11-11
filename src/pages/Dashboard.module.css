@@ -1,0 +1,405 @@
+/* Dashboard.module.css */
+.dashboardContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #004d2f 0%, #006A3F 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  border-right: 1px solid #007a4d;
+  transition: all 0.3s ease;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #007a4d;
+  margin-bottom: 1.5rem;
+}
+
+.logoImg {
+  height: 45px;
+  width: 45px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: white;
+  padding: 4px;
+}
+
+.logoTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.navigation {
+  flex-grow: 1;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin-bottom: 0.5rem;
+}
+
+.navLink {
+  color: #ccf0e0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  border-left: 3px solid transparent;
+}
+
+.navLink:hover {
+  background-color: #007a4d;
+  color: #ffffff;
+  transform: translateX(4px);
+  border-left: 3px solid #ffffff;
+}
+
+.navLinkActive {
+  background-color: #ffffff;
+  color: #006A3F;
+  border-left: 3px solid #006A3F;
+  font-weight: 600;
+}
+
+.navIcon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+  min-width: 20px;
+  transition: transform 0.2s ease;
+  color: inherit;
+}
+
+.navLink:hover .navIcon {
+  transform: scale(1.1);
+}
+
+.navLinkActive .navIcon {
+  color: #006A3F;
+}
+
+.navText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid #007a4d;
+}
+
+.userInfo {
+  padding: 0 0.5rem 1rem;
+}
+
+.userText {
+  margin: 0 0 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.greeting {
+  color: #b3e0cc;
+  font-weight: 500;
+}
+
+.username {
+  color: #ffffff;
+  font-weight: 600;
+  display: block;
+}
+
+.role {
+  color: #99d1b8;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logoutBtn {
+  width: 100%;
+  background: linear-gradient(180deg, #005a35 0%, #006A3F 100%);
+  border: 2px solid #ffffff;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+}
+
+.logoutBtn:hover {
+  background: linear-gradient(180deg, #004d2f 0%, #005a35 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 106, 63, 0.3);
+  border-color: #e6f7f0;
+}
+
+.logoutIcon {
+  font-size: 1.1rem;
+}
+
+.logoutText {
+  white-space: nowrap;
+}
+
+.mainContent {
+  flex-grow: 1;
+  margin-left: 280px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #374151;
+}
+
+.contentWrapper {
+  padding: 2rem 2.5rem;
+  min-height: 100vh;
+}
+
+.contentWrapper h1,
+.contentWrapper h2,
+.contentWrapper h3 {
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.buttonPrimary {
+  background-color: #006A3F;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttonPrimary:hover {
+  background-color: #005a35;
+}
+
+.buttonSecondary {
+  background-color: #f0fdf4;
+  color: #006A3F;
+  border: 1px solid #006A3F;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttonSecondary:hover {
+  background-color: #e8f5e9;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: #f0fdf4;
+  color: #111827;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #374151;
+}
+
+.table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 240px;
+  }
+  
+  .mainContent {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .mainContent {
+    margin-left: 220px;
+  }
+  
+  .contentWrapper {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    overflow: hidden;
+  }
+  
+  .logoTitle,
+  .navText,
+  .userText,
+  .logoutText {
+    display: none;
+  }
+  
+  .logoSection {
+    justify-content: center;
+    padding-bottom: 1.5rem;
+  }
+  
+  .logoImg {
+    margin-right: 0;
+  }
+  
+  .navLink {
+    justify-content: center;
+    padding: 0.9rem 0.5rem;
+    border-left: none;
+  }
+  
+  .navIcon {
+    margin-right: 0;
+    font-size: 1.4rem;
+  }
+  
+  .navLinkActive {
+    border-left: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .mainContent {
+    margin-left: 70px;
+  }
+  
+  .contentWrapper {
+    padding: 1rem;
+  }
+  
+  .table {
+    font-size: 0.8rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    position: fixed;
+    z-index: 999;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .mainContent {
+    margin-left: 0;
+    padding-top: 60px;
+  }
+  
+  .contentWrapper {
+    padding: 0.75rem;
+  }
+  
+  .table {
+    font-size: 0.7rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentWrapper {
+    padding: 0.5rem;
+  }
+  
+  .table {
+    font-size: 0.65rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.25rem;
+  }
+}
+
+/* Mobile menu toggle button */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: #006A3F;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
