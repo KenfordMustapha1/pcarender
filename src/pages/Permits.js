@@ -8,7 +8,7 @@ import {
   GeoJSON,
   Marker,
   Popup,
-  useMap,
+  // useMap, // Removed unused import
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -49,7 +49,7 @@ const Permit = () => {
   const [showMap, setShowMap] = useState(false); // State to toggle map visibility
   const [statusFilter, setStatusFilter] = useState('all'); // New state for status filter
   const [applicationTypeFilter, setApplicationTypeFilter] = useState('all'); // New state for application type filter
-  const [mobileView, setMobileView] = useState('table'); // For mobile: table or cards
+  // const [mobileView, setMobileView] = useState('table'); // Removed unused state - eslint-disable-line no-unused-vars
 
   // Function to fetch registrations
   const fetchRegistrations = async () => {
@@ -70,7 +70,8 @@ const Permit = () => {
     
     // Check screen size on load
     const checkScreenSize = () => {
-      setMobileView(window.innerWidth < 768 ? 'cards' : 'table');
+      // For now, just set to table view since we're not using mobileView state
+      // You can add mobile logic here if needed
     };
     
     checkScreenSize();
@@ -145,7 +146,7 @@ const Permit = () => {
       setLoading(true);
       
       // Update status in database (this will trigger email sending on backend)
-      const response = await axios.patch(
+      await axios.patch(
         `http://localhost:5000/api/registrations/${selectedId}/status`,
         { status: decision }
       );

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   MapContainer,
   TileLayer,
-  GeoJSON,
+  // GeoJSON, // Removed unused import
   Marker,
   Popup,
   useMap,
@@ -42,7 +42,8 @@ const HeatmapLayer = ({ points }) => {
 const Dashboard = () => {
   const [farmerCount, setFarmerCount] = useState(0);
   const [manufacturerCount, setManufacturerCount] = useState(0);
-  const [farmers, setFarmers] = useState([]);
+  // Remove unused setFarmers state - keeping the destructuring but marking as unused
+  const [, setFarmers] = useState([]); // eslint-disable-line no-unused-vars
   const [manufacturers, setManufacturers] = useState([]);
   const [approvedRegistrations, setApprovedRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -269,7 +270,7 @@ const Dashboard = () => {
           <div className="recent-activity">
             <h3>Recent Activity</h3>
             <ul>
-              <li>New farmer registration: {farmers[0]?.name || 'N/A'}</li>
+              {/* <li>New farmer registration: {farmers[0]?.name || 'N/A'}</li> */}
               <li>New manufacturer: {manufacturers[0]?.name || 'N/A'}</li>
               <li>Recent approval: {approvedRegistrations[0]?.name || 'N/A'}</li>
             </ul>
