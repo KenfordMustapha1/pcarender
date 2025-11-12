@@ -61,10 +61,16 @@ if (!fs.existsSync(verificationUploadDir)) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // CORS middleware
-const allowedOrigins = ['http://localhost:3000', 'http://192.168.0.113:3000', 'https://pcarender.onrender.com'];
+// --- MODIFIED: Use environment variable for allowed origins ---
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'http://localhost:3000', // Use env var, fallback to localhost
+  // Add other allowed origins if needed, like staging URL
+];
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error(`CORS policy does not allow access from origin ${origin}`), false);
@@ -144,8 +150,12 @@ const transporter = nodemailer.createTransport({
 //  STEP 2: CREATE HTTP SERVER AND SOCKET.IO INSTANCE
 const server = http.createServer(app);
 const io = socketIo(server, {
+  // --- MODIFIED: Use environment variable for Socket.IO CORS origins ---
   cors: {
-    origin: ["http://localhost:3000", "http://192.168.0.113:3000", "https://pcarender.onrender.com"],
+    origin: [
+      process.env.FRONTEND_URL || "http://localhost:3000", // Use env var
+      // Add other allowed origins if needed
+    ],
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -182,13 +192,14 @@ io.on('connection', (socket) => {
   });
   // Add new handler for send-image
   socket.on('send-image', async (data) => {
-    const { buyerEmail, sellerEmail, imageUrl, sender } = data;
+    const { buyerEmail, sellerEmail, imageUrl, sender } = data; // imageUrl is now expected to be the full URL
     const room = [buyerEmail, sellerEmail].sort().join('-');
     try {
       const msg = new Message({
         from: sender,
         to: sender === buyerEmail ? sellerEmail : buyerEmail,
-        imageUrl,
+        // Store the full URL received from the client (constructed in the /api/messages/image route)
+        imageUrl: imageUrl,
         type: 'image',
         read: false
       });
@@ -408,29 +419,38 @@ app.post('/api/messages/image', upload.single('image'), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ msg: 'No image file provided' });
     }
+    // --- MODIFIED: Determine the base URL dynamically ---
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+
     // Save image message to database
     const msg = new Message({
       from,
       to,
+      // Store only the filename in the database
       imageUrl: req.file.filename,
       type: 'image',
       read: false
     });
     await msg.save();
-    // Emit to socket (you'll need to handle this in socket.io)
+
+    // Emit to socket
     const room = [from, to].sort().join('-');
     io.to(room).emit('receive-image', {
       _id: msg._id,
       from: msg.from,
       to: msg.to,
-      imageUrl: `http://localhost:5000/uploads/${req.file.filename}`,
+      // Construct the full URL dynamically when emitting
+      imageUrl: `${baseUrl}/uploads/${req.file.filename}`,
       type: 'image',
       timestamp: msg.timestamp,
       read: false
     });
+
+    // Send response with dynamically constructed URL
     res.json({
       success: true,
-      imageUrl: `http://localhost:5000/uploads/${req.file.filename}`,
+      // Construct the full URL dynamically for the response
+      imageUrl: `${baseUrl}/uploads/${req.file.filename}`,
       message: msg
     });
   } catch (error) {
@@ -523,6 +543,7 @@ app.delete('/api/payment-methods/:storeEmail/:methodType', async (req, res) => {
       updateData,
       { new: true, upsert: false } // Return the updated document, don't upsert here
     );
+
     if (!updatedMethods) {
       // If no record existed, return the default empty structure
       console.log(`No existing payment record found for ${storeEmail}, returning default.`);
@@ -720,6 +741,7 @@ app.get('/api/seller/inbox', async (req, res) => {
       },
       { $sort: { "lastMessage.timestamp": -1 } }
     ]);
+
     const result = conversations.map(conv => ({
       buyerEmail: conv._id,
       buyerName: conv.buyerName || conv._id.split('@')[0],
@@ -728,6 +750,7 @@ app.get('/api/seller/inbox', async (req, res) => {
       timestamp: conv.lastMessage.timestamp,
       unreadCount: conv.unreadCount
     }));
+
     res.json({ conversations: result });
   } catch (err) {
     console.error('Error fetching seller inbox:', err);
@@ -832,6 +855,7 @@ app.get('/api/buyer/inbox', async (req, res) => {
       },
       { $sort: { "lastMessage.timestamp": -1 } }
     ]);
+
     const result = conversations.map(conv => ({
       sellerEmail: conv._id,
       sellerName: conv.sellerName || conv._id.split('@')[0],
@@ -840,6 +864,7 @@ app.get('/api/buyer/inbox', async (req, res) => {
       timestamp: conv.lastMessage.timestamp,
       unreadCount: conv.unreadCount
     }));
+
     res.json({ conversations: result });
   } catch (err) {
     console.error('Error fetching buyer inbox:', err);
@@ -1655,6 +1680,7 @@ app.post('/api/verification/upload', upload.fields([
     res.status(500).json({ message: 'Verification upload failed' });
   }
 });
+// --- MODIFIED: Use dynamic URL for verification documents ---
 app.get('/api/verification', async (req, res) => {
   try {
     const sellers = await Seller.find({
@@ -1662,15 +1688,20 @@ app.get('/api/verification', async (req, res) => {
       backIdPath: { $exists: true, $ne: null },
       selfieIdPath: { $exists: true, $ne: null }
     });
+
+    // --- MODIFIED: Determine the base URL dynamically ---
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+
     const response = sellers.map(seller => ({
       _id: seller._id,
       sellerName: seller.name,
       email: seller.email,
       submittedAt: seller.updatedAt || seller.createdAt,
       status: seller.isApproved ? 'Approved' : (seller.rejected ? 'Rejected' : 'Pending'),
-      frontIdUrl: `http://localhost:5000/uploads/seller-verification/${path.basename(seller.frontIdPath)}`,
-      backIdUrl: `http://localhost:5000/uploads/seller-verification/${path.basename(seller.backIdPath)}`,
-      selfieIdUrl: `http://localhost:5000/uploads/seller-verification/${path.basename(seller.selfieIdPath)}`
+      // Construct URLs dynamically
+      frontIdUrl: `${baseUrl}/uploads/seller-verification/${path.basename(seller.frontIdPath)}`,
+      backIdUrl: `${baseUrl}/uploads/seller-verification/${path.basename(seller.backIdPath)}`,
+      selfieIdUrl: `${baseUrl}/uploads/seller-verification/${path.basename(seller.selfieIdPath)}`
     }));
     res.json(response);
   } catch (error) {
