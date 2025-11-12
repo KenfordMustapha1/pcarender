@@ -4,6 +4,10 @@ import pcaImage from '../images/login-pca.jpg';
 import axios from 'axios';
 import './Signup.css';
 
+// Set the base URL for axios based on environment
+// In development, you might set REACT_APP_BACKEND_URL=http://localhost:5000 in your .env file
+// In production, you would set it to your deployed backend URL, or leave it empty if backend is on the same domain
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
 axios.defaults.withCredentials = true;
 
 function Signup() {
@@ -50,7 +54,8 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/signup', {
+      // Use the dynamic BACKEND_URL
+      const res = await axios.post(`${BACKEND_URL}/signup`, {
         name,
         email,
         password
