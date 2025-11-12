@@ -1,6 +1,7 @@
 // RegistrationPage.js
 import React, { useState, useEffect } from 'react';
 import './RegistrationPage.css';
+
 // Sample data for provinces, municipalities, and barangays in Quezon
 const LOCATION_DATA = {
   Quezon: {
@@ -325,10 +326,12 @@ const LOCATION_DATA = {
         "Barangay CXCIX",
         "Barangay CC"
       ],
-      // Add more municipalities and their barangays here
+      // Add more municipalities and their barangays here if needed based on LOCATION_DATA structure
     }
   }
+  // Add other provinces here if necessary
 };
+
 // Mock geocoding function - in a real app, you'd use a service like Google Maps API
 const getCoordinatesFromLocation = async (province, municipality, barangay) => {
   // This is a mock function that returns coordinates based on location
@@ -374,8 +377,7 @@ const getCoordinatesFromLocation = async (province, municipality, barangay) => {
     "Zambales": { lat: 14.05, lng: 121.8 }
   };
   const municipalityCoords = baseCoords[municipality] || { lat: 14.15, lng: 121.5 };
-  // Add some variation based on barangay for more realistic distribution
-  const barangayVariation = barangay ? barangay.length % 20 : 0;
+  // Removed unused 'barangayVariation' variable (this was likely on line ~378 in the original code)
   const latVariation = (Math.random() - 0.5) * 0.05;
   const lngVariation = (Math.random() - 0.5) * 0.05;
   return {
@@ -383,6 +385,7 @@ const getCoordinatesFromLocation = async (province, municipality, barangay) => {
     lng: municipalityCoords.lng + lngVariation
   };
 };
+
 function RegistrationPage() {
   const [step, setStep] = useState(0);
   const totalSteps = 5;
@@ -447,20 +450,24 @@ function RegistrationPage() {
   const [errorMessage, setErrorMessage] = useState('');
   const [availableMunicipalities, setAvailableMunicipalities] = useState([]);
   const [availableBarangays, setAvailableBarangays] = useState([]);
+
+  // Initialize available municipalities on mount or when formData.province changes
+  // Added formData.province to the dependency array to fix react-hooks/exhaustive-deps
   useEffect(() => {
-    // Initialize available municipalities when component mounts
     if (LOCATION_DATA[formData.province]) {
       setAvailableMunicipalities(LOCATION_DATA[formData.province].municipalities);
     }
-  }, []);
+  }, [formData.province]); // Dependency array now includes formData.province
+
+  // Update available barangays when province or municipality changes
   useEffect(() => {
-    // Update available barangays when municipality changes
-    if (formData.province && formData.municipality && LOCATION_DATA[formData.province].barangays[formData.municipality]) {
+    if (formData.province && formData.municipality && LOCATION_DATA[formData.province]?.barangays?.[formData.municipality]) {
       setAvailableBarangays(LOCATION_DATA[formData.province].barangays[formData.municipality]);
     } else {
       setAvailableBarangays([]);
     }
-  }, [formData.province, formData.municipality]);
+  }, [formData.province, formData.municipality]); // Added both dependencies
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (name === 'province') {
@@ -488,11 +495,13 @@ function RegistrationPage() {
       }));
     }
   };
+
   const handleFileChange = (e) => {
     const { name } = e.target;
     const file = e.target.files[0];
     setFiles((prev) => ({ ...prev, [name]: file }));
   };
+
   // Helper function to validate URL - matches backend validation exactly
   const isValidURL = (string) => {
     if (!string || string.trim() === '') return true; // Allow empty
@@ -503,6 +512,7 @@ function RegistrationPage() {
       return false;
     }
   };
+
   // Validation per step
   const validateCurrentStep = () => {
     let error = '';
@@ -623,14 +633,17 @@ function RegistrationPage() {
     setErrorMessage(error);
     return !error;
   };
+
   const goToNextStep = () => {
     if (validateCurrentStep()) {
       if (step < totalSteps) setStep(step + 1);
     }
   };
+
   const goToPrevStep = () => {
     if (step > 0) setStep(step - 1);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateCurrentStep()) {
@@ -658,6 +671,7 @@ function RegistrationPage() {
       // Convert tools and equipment to string if provided
       toolsAndEquipment: formData.toolsAndEquipment ? formData.toolsAndEquipment.trim() : null
     };
+
     const formDataToSend = new FormData();
     for (let key in submissionData) {
       if (key !== 'sameAsOffice' && key !== 'sameAsTelNo2' && key !== 'othernature' && key !== 'coordinates') {
@@ -671,6 +685,7 @@ function RegistrationPage() {
     for (let key in files) {
       formDataToSend.append(key, files[key]);
     }
+
     try {
       const response = await fetch('http://localhost:5000/register-application', {
         method: 'POST',
@@ -690,6 +705,7 @@ function RegistrationPage() {
       setErrorMessage('Server error. Please try again later.');
     }
   };
+
   const renderStep = () => {
     switch (step) {
       case 0:
@@ -1332,6 +1348,7 @@ function RegistrationPage() {
         return null;
     }
   };
+
   return (
     <div className="registration-container">
       <h2>Application of Registration</h2>
@@ -1390,4 +1407,5 @@ function RegistrationPage() {
     </div>
   );
 }
+
 export default RegistrationPage;

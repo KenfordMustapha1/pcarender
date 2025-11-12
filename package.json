@@ -18,6 +18,7 @@
     "express": "^5.1.0",
     "heatmap.js": "^2.0.5",
     "html2canvas": "^1.4.1",
+    "ipaddr.js": "^2.2.0",
     "jspdf": "^3.0.1",
     "leaflet": "^1.9.4",
     "leaflet-heatmap": "^1.0.0",

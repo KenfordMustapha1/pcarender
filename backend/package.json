@@ -18,7 +18,9 @@
         "jspdf": "^3.0.1",
         "leaflet.heat": "^0.2.0",
         "mongoose": "^8.15.0",
+        "multer": "^2.0.2",
         "pdf-lib": "^1.17.1",
-        "socket.io": "^4.8.1"
+        "socket.io": "^4.8.1",
+        "type-is": "^2.0.1"
     }
 }
