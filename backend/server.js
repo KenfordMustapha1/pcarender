@@ -24,7 +24,6 @@ const Notification = require('./models/Notification');
 // Models from old server (ensure these exist)
 const CutPermit = require('./models/CutPermit');
 const TransportPermit = require('./models/TransportPermit');
-
 // --- NEW: Payment Method Model ---
 const PaymentMethodSchema = new mongoose.Schema({
   storeEmail: { type: String, required: true, unique: true },
@@ -43,10 +42,8 @@ const PaymentMethodSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
-
 const PaymentMethod = mongoose.model('PaymentMethod', PaymentMethodSchema);
 // --- END NEW: Payment Method Model ---
-
 // Initialize app
 const app = express();
 // Static file serving for uploads
@@ -64,7 +61,7 @@ if (!fs.existsSync(verificationUploadDir)) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // CORS middleware
-const allowedOrigins = ['http://localhost:3000', 'http://192.168.0.113:3000'];
+const allowedOrigins = ['http://localhost:3000', 'http://192.168.0.113:3000', 'https://pcarender.onrender.com'];
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -75,7 +72,6 @@ app.use(cors({
   },
   credentials: true,
 }));
-
 // --- NEW: Payment Method Upload Middleware ---
 const paymentUpload = multer({
   storage: multer.diskStorage({
@@ -105,7 +101,6 @@ const paymentUpload = multer({
   }
 });
 // --- END NEW: Payment Method Upload Middleware ---
-
 // Multer setup (for other uploads like products, verification)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -131,7 +126,6 @@ const upload = multer({
     mime && ext ? cb(null, true) : cb(new Error('Only images and PDFs are allowed'));
   }
 });
-
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
@@ -151,7 +145,7 @@ const transporter = nodemailer.createTransport({
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://192.168.0.113:3000"],
+    origin: ["http://localhost:3000", "http://192.168.0.113:3000", "https://pcarender.onrender.com"],
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -444,7 +438,6 @@ app.post('/api/messages/image', upload.single('image'), async (req, res) => {
     res.status(500).json({ msg: 'Failed to upload image' });
   }
 });
-
 // --- NEW: Payment Method Routes ---
 // GET: Fetch payment methods for a specific seller
 app.get('/api/payment-methods/:storeEmail', async (req, res) => {
@@ -465,7 +458,6 @@ app.get('/api/payment-methods/:storeEmail', async (req, res) => {
     res.status(500).json({ msg: 'Failed to fetch payment methods' });
   }
 });
-
 // POST/PUT: Update payment methods for a specific seller
 app.post('/api/payment-methods/:storeEmail', paymentUpload.fields([
   { name: 'gcashQr', maxCount: 1 },
@@ -475,58 +467,48 @@ app.post('/api/payment-methods/:storeEmail', paymentUpload.fields([
   try {
     const { storeEmail } = req.params;
     const { gcashNumber, paymayaNumber, bankNumber } = req.body;
-
     // Prepare update object
     const updateData = {
       storeEmail,
       updatedAt: new Date()
     };
-
     // Handle GCash
     if (gcashNumber !== undefined) updateData['gcash.number'] = gcashNumber;
     if (req.files['gcashQr']) {
       updateData['gcash.qrCode'] = req.files['gcashQr'][0].filename;
     }
-
     // Handle PayMaya
     if (paymayaNumber !== undefined) updateData['paymaya.number'] = paymayaNumber;
     if (req.files['paymayaQr']) {
       updateData['paymaya.qrCode'] = req.files['paymayaQr'][0].filename;
     }
-
     // Handle Bank
     if (bankNumber !== undefined) updateData['bank.number'] = bankNumber;
     if (req.files['bankQr']) {
       updateData['bank.qrCode'] = req.files['bankQr'][0].filename;
     }
-
     // Upsert: update if exists, create if doesn't
     const updatedMethods = await PaymentMethod.findOneAndUpdate(
       { storeEmail },
       { $set: updateData },
       { upsert: true, new: true, runValidators: true }
     );
-
     res.json({ success: true, methods: updatedMethods });
   } catch (err) {
     console.error('Error updating payment methods:', err);
     res.status(500).json({ msg: 'Failed to update payment methods', error: err.message });
   }
 });
-
-
 // NEW: DELETE: Remove a specific payment method (number and QR code)
 app.delete('/api/payment-methods/:storeEmail/:methodType', async (req, res) => {
   try {
     const { storeEmail, methodType } = req.params;
     console.log(`Attempting to delete ${methodType} for store: ${storeEmail}`); // Debug log
-    
     // Validate method type
     if (!['gcash', 'paymaya', 'bank'].includes(methodType)) {
       console.error(`Invalid payment method type: ${methodType}`);
       return res.status(400).json({ msg: 'Invalid payment method type' });
     }
-
     // Prepare update object to clear the method using $unset
     const updateData = {
       $unset: { 
@@ -535,14 +517,12 @@ app.delete('/api/payment-methods/:storeEmail/:methodType', async (req, res) => {
       },
       updatedAt: new Date()
     };
-
     // Find and update the record
     let updatedMethods = await PaymentMethod.findOneAndUpdate(
       { storeEmail },
       updateData,
       { new: true, upsert: false } // Return the updated document, don't upsert here
     );
-
     if (!updatedMethods) {
       // If no record existed, return the default empty structure
       console.log(`No existing payment record found for ${storeEmail}, returning default.`);
@@ -555,7 +535,6 @@ app.delete('/api/payment-methods/:storeEmail/:methodType', async (req, res) => {
         } 
       });
     }
-
     console.log(`Successfully deleted ${methodType} for ${storeEmail}. Updated methods:`, updatedMethods);
     res.json({ success: true, methods: updatedMethods });
   } catch (err) {
@@ -564,8 +543,6 @@ app.delete('/api/payment-methods/:storeEmail/:methodType', async (req, res) => {
   }
 });
 // --- END NEW: Payment Method Routes ---
-
-
 // ==========================================
 // SELLER VERIFICATION ROUTES WITH NOTIFICATIONS
 // ==========================================
