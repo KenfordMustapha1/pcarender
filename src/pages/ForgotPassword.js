@@ -1,9 +1,13 @@
-// src/pages/ForgotPassword.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'; // Reuse Login.css for consistent styling
 import loginImage from '../images/login-pca.jpg';
 import axios from 'axios';
+
+// Set the base URL for axios based on environment
+// In development, you might set REACT_APP_BACKEND_URL=http://localhost:5000 in your .env file
+// In production, you would set it to your deployed backend URL, or leave it empty if backend is on the same domain
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -41,7 +45,8 @@ function ForgotPassword() {
     setMessage('');
 
     try {
-      const res = await axios.post('http://localhost:5000/forgot-password', { email });
+      // Use the dynamic BACKEND_URL
+      const res = await axios.post(`${BACKEND_URL}/forgot-password`, { email });
       setMessage(res.data.msg);
       setStep(2);
       setCountdown(600); // Reset countdown
@@ -59,7 +64,8 @@ function ForgotPassword() {
     setErrorMessage('');
 
     try {
-      const res = await axios.post('http://localhost:5000/verify-reset-code', { email, code });
+      // Use the dynamic BACKEND_URL
+      const res = await axios.post(`${BACKEND_URL}/verify-reset-code`, { email, code });
       if (res.data.success) {
         setStep(3);
       }
@@ -88,7 +94,8 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/reset-password', {
+      // Use the dynamic BACKEND_URL
+      const res = await axios.post(`${BACKEND_URL}/reset-password`, {
         email,
         code,
         newPassword
@@ -111,7 +118,8 @@ function ForgotPassword() {
     setMessage('');
 
     try {
-      await axios.post('http://localhost:5000/resend-reset-code', { email });
+      // Use the dynamic BACKEND_URL
+      await axios.post(`${BACKEND_URL}/resend-reset-code`, { email });
       setMessage('New code sent to your email!');
       setCountdown(600);
       setCanResend(false);
